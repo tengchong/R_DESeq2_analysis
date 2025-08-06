@@ -8,10 +8,10 @@ library(DESeq2)
 library(readr)
 
 # 读取 counts 和 metadata
-counts <- read.csv("/Users/tc-macpro/Downloads/gene_count_matrix.csv", row.names = 1)
+counts <- read.csv("/Users/tc-macpro/Downloads/gene_count_matrix_dcl5_2.csv", row.names = 1)
 colnames(counts)
 
-metadata <- read.csv("/Users/tc-macpro/Downloads/metadata_mtm.csv", header = TRUE, row.names = 1)
+metadata <- read.csv("/Users/tc-macpro/Downloads/metadata_dcl5_2.csv", header = TRUE, row.names = 1)
 
 # 确保列名和 metadata row 名匹配
 all(colnames(counts) == rownames(metadata))  # 应该是 TRUE
@@ -46,8 +46,8 @@ pcaData$stage <- gsub(".*_(.*)", "\\1", pcaData$group)
 library(RColorBrewer)
 
 # 拿出更深的蓝色和紫色，跳过最浅的两档
-fertile_colors <- brewer.pal(9, "Reds")[c(4, 6, 8)]   # 对应 0.5mm, 1.0mm, 1.5mm
-ms_colors      <- brewer.pal(9, "Purples")[c(4, 6, 8)]
+fertile_colors <- brewer.pal(9, "Reds")[c(4, 6, 8, 9)]   # 对应 0.5mm, 1.0mm, 1.5mm
+ms_colors      <- brewer.pal(9, "Purples")[c(4, 6, 8, 9)]
 
 # 手动设置颜色对应 group（确保顺序对应 group levels）
 group_levels <- sort(unique(pcaData$group))  # 例如 fertile_0.5mm, ..., ms_1.5mm
